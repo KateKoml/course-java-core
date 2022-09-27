@@ -33,11 +33,10 @@ class Task01 {
      */
     static double getAverageMark(int[] marks) {
         double averageMark = 0.0;
-        int length = marks.length;
         for (int mark : marks) {
             averageMark += mark;
         }
-        averageMark /= length;
+        averageMark /= marks.length;
         return NumberUtil.roundValueToTwoDigitsForMantissa(averageMark);
     }
 

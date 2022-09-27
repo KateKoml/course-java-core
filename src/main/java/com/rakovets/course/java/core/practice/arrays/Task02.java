@@ -56,8 +56,8 @@ class Task02 {
         for (int i = 0; i < marks.length; i++) {
             for (int j = 0; j < marks[i].length; j++) {
                 min = Math.min(min, marks[i][j]);
-                }
             }
+        }
         return min;
     }
 
