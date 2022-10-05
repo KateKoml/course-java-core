@@ -5,12 +5,6 @@ public class Atm {
     private int numberBanknotes50;
     private int numberBanknotes100;
 
-    {
-        this.numberBanknotes20 = 0;
-        this.numberBanknotes50 = 0;
-        this.numberBanknotes100 = 0;
-    }
-
     Atm() {
     }
 
@@ -18,30 +12,6 @@ public class Atm {
         this.numberBanknotes20 = numberBanknotes20;
         this.numberBanknotes50 = numberBanknotes50;
         this.numberBanknotes100 = numberBanknotes100;
-    }
-
-    public void addNumberBanknotes20(int numberBanknotes20) {
-        this.numberBanknotes20 += numberBanknotes20;
-    }
-
-    public void addNumberBanknotes50(int numberBanknotes50) {
-        this.numberBanknotes50 += numberBanknotes50;
-    }
-
-    public void addNumberBanknotes100(int numberBanknotes100) {
-        this.numberBanknotes100 += numberBanknotes100;
-    }
-
-    public int getNumberBanknotes20() {
-        return numberBanknotes20;
-    }
-
-    public int getNumberBanknotes50() {
-        return numberBanknotes50;
-    }
-
-    public int getNumberBanknotes100() {
-        return numberBanknotes100;
     }
 
     public boolean isPossibleIssue(int amount) {
@@ -76,5 +46,29 @@ public class Atm {
             isPossible = true;
         }
         return isPossible;
+    }
+
+    public void addNumberBanknotes20(int numberBanknotes20) {
+        this.numberBanknotes20 += numberBanknotes20;
+    }
+
+    public void addNumberBanknotes50(int numberBanknotes50) {
+        this.numberBanknotes50 += numberBanknotes50;
+    }
+
+    public void addNumberBanknotes100(int numberBanknotes100) {
+        this.numberBanknotes100 += numberBanknotes100;
+    }
+
+    public int getNumberBanknotes20() {
+        return numberBanknotes20;
+    }
+
+    public int getNumberBanknotes50() {
+        return numberBanknotes50;
+    }
+
+    public int getNumberBanknotes100() {
+        return numberBanknotes100;
     }
 }

@@ -24,6 +24,7 @@ public class TestAtm {
     @MethodSource("provideArgumentsForIsPossibleIssue")
     void testIsPossibleIssue(int amount, boolean expected) {
         boolean actual = atm.isPossibleIssue(amount);
+
         Assertions.assertEquals(expected, actual);
     }
 }

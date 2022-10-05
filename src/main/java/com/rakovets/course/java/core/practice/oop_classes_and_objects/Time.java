@@ -4,29 +4,27 @@ public class Time {
     private int hours;
     private int minutes;
     private int seconds;
-
-    {
-        this.hours = 0;
-        this.minutes = 0;
-        this.seconds = 0;
-    }
+    final int SECONDS_IN_MIN = 60;
+    final int SECONDS_IN_HOUR = 3600;
+    final int SECONDS_IN_DAY = 86400;
 
     Time() {
     }
 
     Time(int totalSeconds) {
-        final int secondsInMin = 60;
-        final int secondsInHour = 3600;
-        final int secondsInDay = 86400;
-        this.hours = totalSeconds % secondsInDay / secondsInHour;
-        this.minutes = totalSeconds % secondsInHour / secondsInMin;
-        this.seconds = totalSeconds % secondsInMin;
+        this.hours = totalSeconds % SECONDS_IN_DAY / SECONDS_IN_HOUR;
+        this.minutes = totalSeconds % SECONDS_IN_HOUR / SECONDS_IN_MIN;
+        this.seconds = totalSeconds % SECONDS_IN_MIN;
     }
 
     Time(int hours, int minutes, int seconds) {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
+    }
+
+    public int getTotalSeconds() {
+        return hours * SECONDS_IN_HOUR + minutes * SECONDS_IN_MIN + seconds;
     }
 
     public int getHours() {
@@ -51,11 +49,5 @@ public class Time {
 
     public void setSeconds(int seconds) {
         this.seconds = seconds;
-    }
-
-    public int getTotalSeconds() {
-        final int secondsInMin = 60;
-        final int secondsInHour = 3600;
-        return hours * secondsInHour + minutes * secondsInMin + seconds;
     }
 }

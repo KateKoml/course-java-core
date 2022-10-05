@@ -38,6 +38,7 @@ public class TestPoint {
     @MethodSource("provideArguments")
     void testGetDistance(Point point1, Point point2, double expected) {
         double actual = point1.getDistance(point2);
+
         Assertions.assertEquals(expected, actual);
     }
 }

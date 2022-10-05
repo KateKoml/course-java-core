@@ -28,13 +28,16 @@ public class TestRectangle {
     void testGetPerimeter(Point topLeftPoint, Point bottomRightPoint, double expected) {
         Rectangle rectangle = new Rectangle(topLeftPoint, bottomRightPoint);
         double actual = rectangle.getPerimeter(topLeftPoint, bottomRightPoint);
+
         Assertions.assertEquals(expected, actual);
     }
+
     @ParameterizedTest
     @MethodSource("provideArgumentsForGetArea")
     void testGetArea(Point topLeftPoint, Point bottomRightPoint, double expected) {
         Rectangle rectangle = new Rectangle(topLeftPoint, bottomRightPoint);
         double actual = rectangle.getArea(topLeftPoint, bottomRightPoint);
+
         Assertions.assertEquals(expected, actual);
     }
 }

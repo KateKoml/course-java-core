@@ -6,17 +6,17 @@ public class Point {
     private double x;
     private double y;
 
-    {
-        this.x = 0;
-        this.y = 0;
-    }
-
     Point() {
     }
 
     Point(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public double getDistance(Point secondPoint) {
+        double distance = Math.sqrt(Math.pow(secondPoint.getX() - this.getX(), 2) + Math.pow(secondPoint.getY() - this.getY(), 2));
+        return NumberUtil.roundValueToTwoDigitsForMantissa(distance);
     }
 
     public double getX() {
@@ -33,10 +33,5 @@ public class Point {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public double getDistance(Point secondPoint) {
-        double distance = Math.sqrt(Math.pow(secondPoint.getX() - this.getX(), 2) + Math.pow(secondPoint.getY() - this.getY(), 2));
-        return NumberUtil.roundValueToTwoDigitsForMantissa(distance);
     }
 }

@@ -4,16 +4,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class TimeTests {
-
-    @Test
-    public void testGetTimeGetTotalSeconds() {
-        Time time = new Time();
-        Assertions.assertEquals(0, time.getHours());
-        Assertions.assertEquals(0, time.getMinutes());
-        Assertions.assertEquals(0, time.getSeconds());
-        Assertions.assertEquals(0, time.getTotalSeconds());
-    }
-
     @Test
     public void testGetTime2GetTotalSeconds() {
         Time time = new Time(1, 45, 34);
