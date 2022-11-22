@@ -5,22 +5,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ReflectionUtils {
-    public Field getFieldOfClass(Class<?> clazz, String fieldName) {
-        try {
-            return clazz.getDeclaredField(fieldName);
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
+    public Field getFieldOfClass(Class<?> clazz, String fieldName) throws NoSuchFieldException {
+        return clazz.getDeclaredField(fieldName);
     }
 
-    public Method getMethodOfClass(Class<?> clazz, String methodName) {
+    public Method getMethodOfClass(Class<?> clazz, String methodName) throws NoSuchMethodException {
         Method method = null;
-        try {
-            method = clazz.getDeclaredMethod(methodName);
-            method.setAccessible(true);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
+        method = clazz.getDeclaredMethod(methodName);
+        method.setAccessible(true);
         return method;
     }
 
@@ -28,43 +20,27 @@ public class ReflectionUtils {
         return clazz.getDeclaredMethods();
     }
 
-    public Object runMethodToObject(Method method, Object obj) {
+    public Object runMethodToObject(Method method, Object obj) throws InvocationTargetException, IllegalAccessException {
         method.setAccessible(true);
         Object obj1 = null;
-        try {
-            obj1 = method.invoke(obj);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+        obj1 = method.invoke(obj);
         return obj1;
     }
 
-    public void setFieldOfObject(Field field, Object obj, Object value) {
+    public void setFieldOfObject(Field field, Object obj, Object value) throws IllegalAccessException {
         field.setAccessible(true);
-        try {
-            field.set(obj, value);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        field.set(obj, value);
     }
 
-    public Method getMethodWithParameters(Class<?> clazz, String methodName, Class<?>... forParameters) {
+    public Method getMethodWithParameters(Class<?> clazz, String methodName, Class<?>... forParameters) throws NoSuchMethodException {
         Method method = null;
-        try {
-            method = clazz.getDeclaredMethod(methodName, forParameters);
-            method.setAccessible(true);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
+        method = clazz.getDeclaredMethod(methodName, forParameters);
+        method.setAccessible(true);
         return method;
     }
 
-    public Object runThisMethodWithArguments(Method method, Object obj, Object... arg) {
+    public Object runThisMethodWithArguments(Method method, Object obj, Object... arg) throws InvocationTargetException, IllegalAccessException {
         method.setAccessible(true);
-        try {
-            return method.invoke(obj, arg);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
+        return method.invoke(obj, arg);
     }
 }

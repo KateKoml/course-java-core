@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -26,14 +27,14 @@ public class ReflectionUtilsTests {
 
     @ParameterizedTest
     @MethodSource("provideArgumentsForGetFieldOfClass")
-    void testGetFieldOfClass(Class clazz, String fieldName, Field expected) {
+    void testGetFieldOfClass(Class clazz, String fieldName, Field expected) throws NoSuchFieldException {
         Field actual = reflectionUtils.getFieldOfClass(clazz, fieldName);
 
         Assertions.assertEquals(expected, actual);
     }
 
     @Test
-    void getMethodOfClass() {
+    void getMethodOfClass() throws NoSuchMethodException {
         Method method = reflectionUtils.getMethodOfClass(studentClass, "getName");
 
         Assertions.assertEquals("class java.lang.String", method.getReturnType().toString());
@@ -54,13 +55,13 @@ public class ReflectionUtilsTests {
     }
 
     @Test
-    void runMethodToObject() {
+    void runMethodToObject() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = reflectionUtils.getMethodOfClass(studentClass, "getName");
         Assertions.assertEquals("Judi", reflectionUtils.runMethodToObject(method, student));
     }
 
     @Test
-    void setFieldOfObject() {
+    void setFieldOfObject() throws NoSuchFieldException, NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Field field = reflectionUtils.getFieldOfClass(studentClass, "surname");
         reflectionUtils.setFieldOfObject(field, student, "McFly");
         Method method = reflectionUtils.getMethodOfClass(studentClass, "getSurname");
@@ -68,14 +69,14 @@ public class ReflectionUtilsTests {
     }
 
     @Test
-    void getMethodWithParameters() {
+    void getMethodWithParameters() throws NoSuchMethodException {
         Method method = reflectionUtils.getMethodWithParameters(studentClass, "updateAge", int.class);
         Assertions.assertEquals("int", method.getReturnType().toString());
         Assertions.assertEquals(1, method.getParameterCount());
     }
 
     @Test
-    void runThisMethodWithArguments() {
+    void runThisMethodWithArguments() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Method method = reflectionUtils.getMethodWithParameters(studentClass, "updateAge", int.class);
         Assertions.assertEquals(23, reflectionUtils.runThisMethodWithArguments(method, student, 5));
     }
